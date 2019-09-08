@@ -3,6 +3,7 @@
   (("M-x" . helm-M-x)
    ("C-x C-f" . helm-find-files))
   :config
+  (setq helm-mode-fuzzy-match t)
   (helm-mode 1))
 
 

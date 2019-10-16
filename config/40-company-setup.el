@@ -1,5 +1,6 @@
 ;; Company Auto-Complete
 (use-package company
+  :ensure t
   :config
   (setq company-idle-delay 0.2
 	company-minimum-prefix-length 2
@@ -11,7 +12,8 @@
 
 
 (use-package company-quickhelp          ; Documentation popups for Company
-    :config
+  :ensure t
+  :config
   (setq company-quickhelp-delay 0.2
 	company-tooltip-align-annotations t)
   :init (add-hook 'global-company-mode-hook #'company-quickhelp-mode))

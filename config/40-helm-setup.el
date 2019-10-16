@@ -1,4 +1,5 @@
 (use-package helm
+  :ensure t
   :bind
   (("M-x" . helm-M-x)
    ("C-x C-f" . helm-find-files))
@@ -8,5 +9,6 @@
 
 
 (use-package helm-projectile
+  :ensure t
   :config
   (helm-projectile-on))

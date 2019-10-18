@@ -7,3 +7,8 @@
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
+
+
+
+(use-package use-package-ensure-system-package
+  :ensure t)

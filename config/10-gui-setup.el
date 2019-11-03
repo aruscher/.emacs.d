@@ -24,6 +24,9 @@
 ;; Show line numbers
 (global-display-line-numbers-mode t)
 
+;; Show column numbers
+(setq column-number-mode t)
+
 ;; Use ibuffer for list-buffers
 (defalias 'list-buffers 'ibuffer)
 

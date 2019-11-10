@@ -1,0 +1,12 @@
+* Blogs                                                              :elfeed:
+** Coding                                                            :coding:
+*** Python                                                           :python:
+**** https://planetpython.org/rss20.xml
+*** Lisp                                                               :lisp:
+**** http://planet.lisp.org/rss20.xml
+** Emacs                                                              :emacs:
+*** https://planet.emacslife.com/atom.xml
+** Comics                                                            :comics:
+*** https://xkcd.com/rss.xml
+** Misc                                                                :misc:
+*** http://syndication.thedailywtf.com/TheDailyWtf

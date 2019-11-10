@@ -4,8 +4,7 @@
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
-  :init (setq markdown-command "multimarkdown")
-  :hook (markdown . turn-on-auto-fill))
+  :init (setq markdown-command "multimarkdown"))
 
 
 (use-package pandoc-mode

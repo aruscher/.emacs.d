@@ -7,7 +7,13 @@
 (defun bjm/elfeed-save-db-and-bury ()
   (interactive)
   (elfeed-db-save)
+  (elfeed-db-compact)
   (quit-window))
+
+(defun bjm/elfeed-mark-all-as-read ()
+  (interactive)
+  (mark-whole-buffer)
+  (elfeed-search-untag-all-unread))
 
 (use-package elfeed
   :ensure t

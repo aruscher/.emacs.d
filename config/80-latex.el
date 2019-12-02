@@ -45,7 +45,3 @@
   :init
   (setq auctex-latexmk-inherit-TeX-PDF-mode t))
 
-
-
-
-

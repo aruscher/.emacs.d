@@ -3,12 +3,6 @@
   :ensure t
   :init (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
-(use-package company-auctex
-  :ensure t
-  :hook
-  (latex-mode . (company-auctex-init)))
-
-
 (use-package company-bibtex
   :ensure t
   :hook
@@ -21,6 +15,8 @@
 
 
 
+(use-package epresent
+  :ensure t)
 
 ;;(global-set-key "\C-cl" 'org-store-link)
 ;;(global-set-key "\C-ca" 'org-agenda)

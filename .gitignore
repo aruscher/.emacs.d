@@ -60,3 +60,7 @@ flycheck_*.el
 straight/
 transient/
 /projectile.cache
+/semanticdb/
+/recentf
+/elpy/
+/.mc-lists.el

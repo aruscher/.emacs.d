@@ -18,5 +18,4 @@
 
 (defun my-lisp-mode-hook ()
   (paredit-mode +1)  
-  (setq indent-tabs-mode nil)
-  (whitespace-mode 1))
+  (setq indent-tabs-mode nil))

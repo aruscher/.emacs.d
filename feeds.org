@@ -10,4 +10,4 @@
 *** https://xkcd.com/rss.xml
 ** Misc                                                                :misc:
 *** http://syndication.thedailywtf.com/TheDailyWtf
-*** https://hnrss.org/frontpage?count=100
+*** https://hnrss.org/frontpage?count=100&points=100

@@ -1,0 +1,68 @@
+#+title: My Emacs-Configuration
+#+author: Andreas Ruscheinski
+#+email: ????@fooo.com
+#+property: header-args :tangle foo.lisp :comments both  :results none
+
+* Create init file after saving
+  #+BEGIN_SRC elisp :eval never-export :results nil :tangle no
+    (defun personal/create-init-file ()
+      (interactive)
+      (message "my Foo")
+      (org-babel-tangle)
+      (load (expand-file-name "org-config/foo.lisp" user-emacs-directory)))
+
+    (add-hook 'after-save-hook #'personal/create-init-file)
+  #+END_SRC
+
+
+* Define variables
+** Backup Directory
+   #+BEGIN_SRC elisp
+     (defvar *personal/backup-directory*
+       (expand-file-name "backup/" user-emacs-directory))
+   #+END_SRC
+** Custom File 
+   #+BEGIN_SRC elisp
+     (defvar *personal/custom-file*
+       (expand-file-name "custom.el" user-emacs-directory))
+   #+END_SRC
+* Setup Backup Directory
+  #+BEGIN_SRC elisp
+    (unless (file-exists-p *personal/backup-directory*)
+	  (mkdir *personal/backup-directory*))
+    (setq backup-directory-alist
+	  `(("." . ,*personal/backup-directory*)))
+  #+END_SRC
+* Setup Custom File
+  #+BEGIN_SRC elisp
+    (setq custom-file
+	  ,*personal/custom-file*)
+    (unless (file-exists-p custom-file)
+      (with-temp-buffer
+	(write-file custom-file)))
+    (load custom-file)
+  #+END_SRC
+
+
+
+
+
+
+
+
+
+
+* Setup Use-Package
+** Setup Package
+#+BEGIN_SRC elisp
+;; Make all commands of the “package” module present.
+(require 'package)
+
+;; Internet repositories for new packages.
+(setq package-archives '(("org"       . "http://orgmode.org/elpa/")
+                         ("gnu"       . "http://elpa.gnu.org/packages/")
+                         ("melpa"     . "http://melpa.org/packages/")))
+
+;; Actually get “package” to work.
+(package-initialize)
+#+END_SRC

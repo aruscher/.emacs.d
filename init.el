@@ -6,7 +6,6 @@
    my-config-folder
    :match ".*\.el$"))
 
-
 (dolist (config-file my-config-files)
   (load config-file))
 

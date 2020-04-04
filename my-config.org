@@ -1,33 +1,20 @@
 #+title: My EMACS config
 #+author: Andreas Ruscheinski
-#+options: :results nil
-#+property: header-args :tangle init.el :comments no  :results none
-
-* Create init-file after saving
-#+NAME: startup
-#+BEGIN_SRC elisp :eval never-export :results nil :tangle no
-  (message "Run startup")
-  (defun personal/create-init-file ()
-      (interactive)
-      (org-babel-tangle)
-      (load (expand-file-name "init.el" user-emacs-directory)))    
-  (add-hook 'after-save-hook #'personal/create-init-file)
-#+END_SRC
 
 * Define variables
 ** Backup Directory
-   #+BEGIN_SRC elisp
+   #+BEGIN_SRC emacs-lisp
      (defvar *personal/backup-directory*
        (expand-file-name "backup/" user-emacs-directory))
    #+END_SRC
 ** Custom File
-   #+BEGIN_SRC elisp
+   #+BEGIN_SRC emacs-lisp
      (defvar *personal/custom-file*
        (expand-file-name "custom.el" user-emacs-directory))
    #+END_SRC
 
 * Setup backup directory
-#+BEGIN_SRC elisp
+#+BEGIN_SRC emacs-lisp
   ;; Create backup directory if not exist
   (unless (file-exists-p *personal/backup-directory*)
     (mkdir *personal/backup-directory*))
@@ -38,7 +25,7 @@
 
 #+END_SRC
 * Setup backup file
-#+BEGIN_SRC elisp
+#+BEGIN_SRC emacs-lisp
   ;; set custom file
   (setq custom-file *personal/custom-file*)
 
@@ -52,7 +39,7 @@
 #+END_SRC
 * Setup GUI
 ** Disable annoying GUI stuff
-   #+BEGIN_SRC elisp
+   #+BEGIN_SRC emacs-lisp
      ;; Disable toolbar
      (tool-bar-mode -1)
 
@@ -69,7 +56,7 @@
      (defalias 'yes-or-no-p 'y-or-n-p)
    #+END_SRC
 ** Activate good GUI stuff
-   #+BEGIN_SRC elisp
+   #+BEGIN_SRC emacs-lisp
      ;; Show matchting parens
      (show-paren-mode t)
 
@@ -94,7 +81,7 @@
    #+END_SRC
 * Setup use-package
 ** Bootstrap use-package
-   #+BEGIN_SRC elisp
+   #+BEGIN_SRC emacs-lisp
      (require 'package)
      (setq package-enable-at-startup nil)
 
@@ -110,7 +97,7 @@
        (package-install 'use-package))
    #+END_SRC
 ** Enable auto-package-update
-#+BEGIN_SRC elisp
+#+BEGIN_SRC emacs-lisp
   ;; Install auto-package-update
   (use-package auto-package-update
     :ensure t
@@ -123,7 +110,7 @@
 #+END_SRC
 * Setup Packages
 ** Setup Theme
-   #+BEGIN_SRC elisp
+   #+BEGIN_SRC emacs-lisp
      ;; Load Spacemacs
      (use-package spacemacs-theme
        :ensure t
@@ -131,14 +118,14 @@
        :init (load-theme 'spacemacs-dark t))
    #+END_SRC
 ** Ace Window
-   #+BEGIN_SRC elisp
+   #+BEGIN_SRC emacs-lisp
      ;; Ace-Window to quickly move a round windows
      (use-package ace-window
        :ensure t
        :bind ("C-c o" . 'ace-window))
    #+END_SRC
 ** Dashboard
-   #+BEGIN_SRC elisp
+   #+BEGIN_SRC emacs-lisp
      ;; Install dashboard
      (use-package dashboard
        :ensure t
@@ -150,14 +137,14 @@
        (dashboard-setup-startup-hook))
    #+END_SRC
 ** Which-key
-   #+BEGIN_SRC elisp
+   #+BEGIN_SRC emacs-lisp
      ;; Install which-key
      (use-package which-key
        :ensure t
        :init (which-key-mode))
    #+END_SRC
 ** Projectile
-   #+BEGIN_SRC elisp
+   #+BEGIN_SRC emacs-lisp
      (use-package projectile
        :ensure t
        :config
@@ -165,13 +152,13 @@
        (projectile-mode 1))
    #+END_SRC
 ** Magit
-   #+BEGIN_SRC elisp
+   #+BEGIN_SRC emacs-lisp
      (use-package magit
        :ensure t
        :bind (("C-x g" . magit-status)))
    #+END_SRC
 ** Helm
-   #+BEGIN_SRC elisp
+   #+BEGIN_SRC emacs-lisp
      ;; Install helm
      (use-package helm
        :ensure t
@@ -189,7 +176,7 @@
        (helm-projectile-on))
    #+END_SRC
 ** PDF-Tools
-   #+BEGIN_SRC elisp
+   #+BEGIN_SRC emacs-lisp
      (use-package pdf-tools
        :ensure t
        :hook (pdf-view-mode . (lambda () (display-line-numbers-mode -1)))
@@ -204,7 +191,7 @@
        (define-key pdf-view-mode-map (kbd "C-s") 'isearch-forward))
    #+END_SRC
 ** Elfeed
-   #+BEGIN_SRC elisp
+   #+BEGIN_SRC emacs-lisp
      (defun bjm/elfeed-load-db-and-open ()
 	 (interactive)
 	 (elfeed-db-load)
@@ -240,13 +227,13 @@
    #+END_SRC
 * Programming languages
 ** Rainbow-Delimiters
-   #+BEGIN_SRC elisp
+   #+BEGIN_SRC emacs-lisp
      (use-package rainbow-delimiters
        :ensure t
        :hook (prog-mode . rainbow-delimiters-mode))
    #+END_SRC
 ** Company Auto-Complete
-   #+BEGIN_SRC elisp
+   #+BEGIN_SRC emacs-lisp
      (use-package company
        :ensure t
        :config
@@ -269,12 +256,12 @@
    #+END_SRC
 ** Lisps
 *** Paredit
-    #+BEGIN_SRC elisp
+    #+BEGIN_SRC emacs-lisp
       (use-package paredit
 	:ensure t)
     #+END_SRC
 *** Common-Lisp
-    #+BEGIN_SRC elisp
+    #+BEGIN_SRC emacs-lisp
       ;; Install slime to interact with common-lisp
       (use-package slime
 	:ensure t
@@ -298,9 +285,9 @@
       (add-hook 'lisp-mode-hook 'personal/lisp-mode-hook)
       (add-hook 'lisp-interaction-mode-hook 'personal/lisp-mode-hook)
     #+END_SRC
-*** ELisp
-    #+BEGIN_SRC elisp
-      (use-package elisp-mode
+*** Emacs-Lisp
+    #+BEGIN_SRC emacs-lisp
+      (use-package emacs-lisp-mode
 	:bind (("C-c C-f" . find-function)
 	       ("C-c C-v" . find-variable))
 	:hook (emacs-lisp-mode . (lambda ()
@@ -310,7 +297,7 @@
 ** 80-python
 
 
-   #+BEGIN_SRC elisp
+   #+BEGIN_SRC emacs-lisp
  (use-package elpy
    :ensure t
    :init
@@ -319,7 +306,7 @@
  #+END_SRC
 * Text-Editing
 ** 80-latex
-   #+BEGIN_SRC elisp
+   #+BEGIN_SRC emacs-lisp
  (use-package tex
    :ensure auctex
    :defer
@@ -370,7 +357,7 @@
 
  #+END_SRC
 ** 80-org
-   #+BEGIN_SRC elisp
+   #+BEGIN_SRC emacs-lisp
  ;; Org-Bullets
  (use-package org-bullets
    :ensure t
@@ -395,22 +382,15 @@
  ;;(global-set-key "\C-ca" 'org-agenda)
  (global-set-key "\C-cc" 'org-capture)
  ;;(global-set-key "\C-cb" 'org-switchb)
-
-
-
  #+END_SRC
 
 
-# eval: (progn (org-babel-goto-named-src-block "enable making init and readme") (org-babel-execute-src-block))
 
 
-# Local Variables:
-# eval: (progn (org-babel-goto-named-src-block "startup")(org-babel-goto-named-src-block "startup"))
-# End:
 
-# Local Variables:
-# eval: (progn (org-babel-goto-named-src-block "startup") (org-babel-execute-src-block))
-# End:
-# Local Variables:
-# eval: (progn (org-babel-goto-named-src-block "startup")     (org-babel-execute-src-block))
-# End:
+
+
+
+
+
+

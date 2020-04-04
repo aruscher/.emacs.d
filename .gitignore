@@ -65,3 +65,4 @@ transient/
 /elpy/
 /.mc-lists.el
 /.last-package-update-day
+/my-config.el

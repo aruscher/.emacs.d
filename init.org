@@ -1,17 +1,19 @@
+#+title: My EMACS config
+#+author: Andreas Ruscheinski
+#+options: :results nil
 #+property: header-args :tangle init.el :comments no  :results none
 
 * Create init-file after saving
+#+NAME: startup
 #+BEGIN_SRC elisp :eval never-export :results nil :tangle no
-  (defvar *personal/loaded-p* nil)
+  (message "Run startup")
   (defun personal/create-init-file ()
       (interactive)
       (org-babel-tangle)
-      (unless *personal/loaded-p*
-	(load (expand-file-name "org-config/foo.el" user-emacs-directory)))
-      (setf *personal/loaded-p* t))
-
-    (add-hook 'after-save-hook #'personal/create-init-file)
+      (load (expand-file-name "init.el" user-emacs-directory)))    
+  (add-hook 'after-save-hook #'personal/create-init-file)
 #+END_SRC
+
 * Define variables
 ** Backup Directory
    #+BEGIN_SRC elisp
@@ -398,3 +400,17 @@
 
  #+END_SRC
 
+
+# eval: (progn (org-babel-goto-named-src-block "enable making init and readme") (org-babel-execute-src-block))
+
+
+# Local Variables:
+# eval: (progn (org-babel-goto-named-src-block "startup")(org-babel-goto-named-src-block "startup"))
+# End:
+
+# Local Variables:
+# eval: (progn (org-babel-goto-named-src-block "startup") (org-babel-execute-src-block))
+# End:
+# Local Variables:
+# eval: (progn (org-babel-goto-named-src-block "startup")     (org-babel-execute-src-block))
+# End:

@@ -12,7 +12,7 @@
      (defvar *personal/custom-file*
        (expand-file-name "custom.el" user-emacs-directory))
    #+END_SRC
-
+   
 * Setup backup directory
 #+BEGIN_SRC emacs-lisp
   ;; Create backup directory if not exist
@@ -304,8 +304,16 @@
 				   (paredit-mode t)
 				   (eldoc-mode t))))
    #+END_SRC
+** Python
 * Text-Editing
-** 80-latex
+** Text-Mode Function
+   #+BEGIN_SRC emacs-lisp
+     (defun personal/text-mode-hook ()
+       (visual-line-mode t)
+       (adaptive-wrap-prefix-mode t)
+       (turn-off-auto-fill))
+   #+END_SRC
+** Latex
    #+BEGIN_SRC emacs-lisp
      (use-package tex
        :ensure auctex
@@ -324,10 +332,7 @@
 	     TeX-source-correlate-start-server t)
        (add-hook 'TeX-after-compilation-finished-functions
 		 #'TeX-revert-document-buffer)
-       (add-hook 'LaTeX-mode-hook 'turn-off-auto-fill)
-       (add-hook 'LaTeX-mode-hook 'visual-line-mode)
-       (add-hook 'LaTeX-mode-hook 'adaptive-wrap-prefix-mode)
-       )
+       (add-hook 'LaTeX-mode-hook 'personal/text-mode-hook))
 
      (use-package reftex
        :ensure t
@@ -356,7 +361,7 @@
 
 
  #+END_SRC
-** 80-org
+** ORG
    #+BEGIN_SRC emacs-lisp
      ;; Org-Bullets
      (use-package org-bullets
@@ -374,27 +379,16 @@
        (org-mode . (lambda () (add-to-list (make-local-variable 'company-backends) '(company-reftex-labels company-reftex-citations)))))
 
      (use-package org
-      :mode (("\\.\\(org\\|org_archive\\)$" . org-mode)))
-     (use-package epresent
-       :ensure t)
+       :mode (("\\.\\(org\\|org_archive\\)$" . org-mode))
+       :config
+       (add-hook 'org-mode-hook 'personal/text-mode-hook))
 
+      (use-package epresent
+       :ensure t)
 
      ;;(global-set-key "\C-cl" 'org-store-link)
      ;;(global-set-key "\C-ca" 'org-agenda)
      (global-set-key "\C-cc" 'org-capture)
      ;;(global-set-key "\C-cb" 'org-switchb)
  #+END_SRC
-
- #+RESULTS:
- : org-capture
-
-
-
-
-
-
-
-
-
- 
 

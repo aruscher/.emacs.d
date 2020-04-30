@@ -11,3 +11,6 @@
 ** Misc                                                                :misc:
 *** http://syndication.thedailywtf.com/TheDailyWtf
 *** https://hnrss.org/frontpage?count=100&points=100
+** News                                                                :news:
+*** http://quillette.com/feed/
+*** https://aeon.co/feed.rss

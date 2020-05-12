@@ -235,6 +235,12 @@
      (use-package try
        :ensure t)
    #+END_SRC
+** Eyebrowse
+   #+BEGIN_SRC emacs-lisp
+     (use-package eyebrowse
+       :ensure t
+       :config (eyebrowse t))
+   #+END_SRC
 * Programming languages
 ** Rainbow-Delimiters
    #+BEGIN_SRC emacs-lisp

@@ -239,7 +239,7 @@
    #+BEGIN_SRC emacs-lisp
      (use-package eyebrowse
        :ensure t
-       :config (eyebrowse t))
+       :config (eyebrowse-mode t))
    #+END_SRC
 * Programming languages
 ** Rainbow-Delimiters
@@ -303,11 +303,15 @@
     #+END_SRC
 *** Emacs-Lisp
     #+BEGIN_SRC emacs-lisp
+      (use-package eros
+	:ensure t)
+
       (use-package emacs-lisp-mode
 	:bind (("C-c C-f" . find-function)
 	       ("C-c C-v" . find-variable))
 	:hook (emacs-lisp-mode . (lambda ()
 				   (paredit-mode t)
+				   (eros-mode t)
 				   (eldoc-mode t))))
    #+END_SRC
 ** Python

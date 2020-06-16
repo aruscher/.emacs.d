@@ -82,19 +82,20 @@
 * Setup use-package
 ** Bootstrap use-package
    #+BEGIN_SRC emacs-lisp
-	(require 'package)
-	(setq package-enable-at-startup nil)
+     (require 'package)
+     (setq package-enable-at-startup nil)
 
-	;; Configure package archieves
-	(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-	(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
-	;; Init package
-	(package-initialize)
+     ;; Configure package archieves
+     (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+     (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
+     (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
+     ;; Init package
+     (package-initialize)
 
-	;; Install use-package if not installed
-	(unless (package-installed-p 'use-package)
-	  (package-refresh-contents)
-	  (package-install 'use-package))
+     ;; Install use-package if not installed
+     (unless (package-installed-p 'use-package)
+       (package-refresh-contents)
+       (package-install 'use-package))
    #+END_SRC
 ** Enable auto-package-update
 #+BEGIN_SRC emacs-lisp
@@ -373,6 +374,13 @@
  #+END_SRC
 ** ORG
    #+BEGIN_SRC emacs-lisp
+     (use-package org
+       :ensure org-plus-contrib
+       :pin org
+       :mode (("\\.\\(org\\|org_archive\\)$" . org-mode))
+       :config
+       (add-hook 'org-mode-hook 'personal/text-mode-hook))
+
      ;; Org-Bullets
      (use-package org-bullets
        :ensure t
@@ -388,10 +396,7 @@
        :hook
        (org-mode . (lambda () (add-to-list (make-local-variable 'company-backends) '(company-reftex-labels company-reftex-citations)))))
 
-     (use-package org
-       :mode (("\\.\\(org\\|org_archive\\)$" . org-mode))
-       :config
-       (add-hook 'org-mode-hook 'personal/text-mode-hook))
+
 
       (use-package epresent
        :ensure t)

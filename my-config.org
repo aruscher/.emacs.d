@@ -82,31 +82,31 @@
 * Setup use-package
 ** Bootstrap use-package
    #+BEGIN_SRC emacs-lisp
-     (require 'package)
-     (setq package-enable-at-startup nil)
+     ;; (require 'package)
+     ;; (setq package-enable-at-startup nil)
 
-     ;; Configure package archieves
-     (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-     (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
-     (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
-     ;; Init package
-     (package-initialize)
+     ;; ;; Configure package archieves
+     ;; (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+     ;; (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
+     ;; (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
+     ;; ;; Init package
+     ;; (package-initialize)
 
      ;; Install use-package if not installed
-     (unless (package-installed-p 'use-package)
-       (package-refresh-contents)
-       (package-install 'use-package))
+     ;;(unless (package-installed-p 'use-package)
+       ;;(package-refresh-contents)
+       ;;(package-install 'use-package))
    #+END_SRC
 ** Enable auto-package-update
 #+BEGIN_SRC emacs-lisp
   ;; Install auto-package-update
-  (use-package auto-package-update
-    :ensure t
-    :config
-    (setq auto-package-update-delete-old-versions t
-	  auto-package-update-prompt-before-update t
-	  auto-package-update-interval 7)
-    (auto-package-update-maybe))
+  ;; (use-package auto-package-update
+  ;;   :ensure t
+  ;;   :config
+  ;;   (setq auto-package-update-delete-old-versions t
+  ;; 	auto-package-update-prompt-before-update t
+  ;; 	auto-package-update-interval 7)
+  ;;   (auto-package-update-maybe))
 
 #+END_SRC
 * Setup Packages
@@ -308,6 +308,7 @@
 	:ensure t)
 
       (use-package emacs-lisp-mode
+	:straight nil
 	:bind (("C-c C-f" . find-function)
 	       ("C-c C-v" . find-variable))
 	:hook (emacs-lisp-mode . (lambda ()
@@ -327,7 +328,7 @@
 ** Latex
    #+BEGIN_SRC emacs-lisp
      (use-package tex
-       :ensure auctex
+       :straight auctex
        :defer
        :defines TeX-view-program-list TeX-view-program-selection
        :init
@@ -398,14 +399,14 @@
 
 
 
-      (use-package epresent
+     (use-package epresent
        :ensure t)
 
      ;;(global-set-key "\C-cl" 'org-store-link)
      ;;(global-set-key "\C-ca" 'org-agenda)
      (global-set-key "\C-cc" 'org-capture)
      ;;(global-set-key "\C-cb" 'org-switchb)
- #+END_SRC*
+ #+END_SRC
 * ORG-Roam
    #+BEGIN_SRC emacs-lisp
      (use-package org-roam

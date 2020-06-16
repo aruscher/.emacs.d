@@ -82,33 +82,19 @@
 * Setup use-package
 ** Bootstrap use-package
    #+BEGIN_SRC emacs-lisp
-     (require 'package)
-     (setq package-enable-at-startup nil)
+	(require 'package)
+	(setq package-enable-at-startup nil)
 
-     ;; Configure package archieves
-     (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-     (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
-     ;; Init package
-     (package-initialize)
+	;; Configure package archieves
+	(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+	(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
+	;; Init package
+	(package-initialize)
 
-     ;; Install use-package if not installed
-     ;; (unless (package-installed-p 'use-package)
-     ;;   (package-refresh-contents)
-     ;;   (package-install 'use-package))
-
-
-     (defvar bootstrap-version)
-     (let ((bootstrap-file
-	    (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-	   (bootstrap-version 5))
-       (unless (file-exists-p bootstrap-file)
-	 (with-current-buffer
-	     (url-retrieve-synchronously
-	      "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
-	      'silent 'inhibit-cookies)
-	   (goto-char (point-max))
-	   (eval-print-last-sexp)))
-       (load bootstrap-file nil 'nomessage))
+	;; Install use-package if not installed
+	(unless (package-installed-p 'use-package)
+	  (package-refresh-contents)
+	  (package-install 'use-package))
    #+END_SRC
 ** Enable auto-package-update
 #+BEGIN_SRC emacs-lisp
@@ -414,25 +400,28 @@
      ;;(global-set-key "\C-ca" 'org-agenda)
      (global-set-key "\C-cc" 'org-capture)
      ;;(global-set-key "\C-cb" 'org-switchb)
- #+END_SRC
-** ORG-Roam
+ #+END_SRC*
+* ORG-Roam
    #+BEGIN_SRC emacs-lisp
      (use-package org-roam
+	   :ensure t
 	   :hook
 	   (after-init . org-roam-mode)
 	   :custom
 	   (org-roam-directory "~/ORG-MyLife")
+	   (org-roam-completion-system 'helm)
+	   (org-roam-index-file "index.org")
 	   :bind (:map org-roam-mode-map
 		   (("C-c n l" . org-roam)
 		    ("C-c n f" . org-roam-find-file)
-		    ("C-c n j" . org-roam-jump-to-index)
-		    ("C-c n b" . org-roam-switch-to-buffer)
-		    ("C-c n g" . org-roam-graph))
+		    ("C-c n g" . org-roam-show-graph))
 		   :map org-mode-map
-		   (("C-c n i" . org-roam-insert))))
+		   (("C-c n i" . org-roam-insert))
+		   (("C-c n I" . org-roam-insert-immediate))))
+
 
      (use-package company-org-roam
-       :straight (:host github :repo "org-roam/company-org-roam")
+       :ensure t
        :config
        (push 'company-org-roam company-backends))
    #+END_SRC

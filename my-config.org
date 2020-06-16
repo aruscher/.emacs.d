@@ -376,8 +376,7 @@
 ** ORG
    #+BEGIN_SRC emacs-lisp
      (use-package org
-       :ensure org-plus-contrib
-       :pin org
+       :straight org-plus-contrib
        :mode (("\\.\\(org\\|org_archive\\)$" . org-mode))
        :config
        (add-hook 'org-mode-hook 'personal/text-mode-hook))

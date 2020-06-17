@@ -432,11 +432,13 @@
 
      (use-package org-journal
        :ensure t
+       :defer t
        :bind
        ("C-c n j" . org-journal-new-entry)
        :custom
        (org-journal-date-prefix "#+title: ")
        (org-journal-file-format "%Y-%m-%d.org")
-       (org-journal-dir "~/ORG-MyLife/")
-       (org-journal-date-format "%A, %d %B %Y"))
+       (org-journal-dir "~/ORG-MyLife/journal")
+       (org-journal-date-format "%A, %d %B %Y")
+       (org-journal-enable-agenda-integration t))
    #+END_SRC

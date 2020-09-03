@@ -11,6 +11,7 @@
 ** Misc                                                                :misc:
 *** http://syndication.thedailywtf.com/TheDailyWtf
 *** https://hnrss.org/frontpage?count=100&points=100
+*** https://lobste.rs/rss
 *** [[https://www.hoheluft-magazin.de/feed/][Hoheluft Magazin]]
 *** https://philomag.de/feed/
 ** News                                                                :news:

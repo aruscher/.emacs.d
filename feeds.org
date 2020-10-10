@@ -13,7 +13,6 @@
 *** https://hnrss.org/frontpage?count=100&points=100
 *** https://lobste.rs/rss
 *** [[https://www.hoheluft-magazin.de/feed/][Hoheluft Magazin]]
-*** https://philomag.de/feed/
 ** News                                                                :news:
 *** http://quillette.com/feed/
 *** https://aeon.co/feed.rss

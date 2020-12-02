@@ -14,8 +14,6 @@
 *** https://lobste.rs/rss
 *** https://www.sicpers.info/feed/rss
 *** [[https://www.hoheluft-magazin.de/feed/][Hoheluft Magazin]]
-*** https://philomag.de/feed/
-*** https://www.gridsagegames.com/blog/feed/
 ** News                                                                :news:
 *** http://quillette.com/feed/
 *** https://aeon.co/feed.rss

@@ -1,5 +1,5 @@
 #+title: My EMACS config
-#+author: Andreas Ruscheinski
+#+PROPERTY: header-args:emacs-lisp :tangle.el :mkdirp yes
 
 * General
 ** Define variables

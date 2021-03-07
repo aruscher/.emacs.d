@@ -109,6 +109,19 @@ Lets use the [[https://github.com/seagle0128/doom-modeline][doom-modeline]] for 
 #+end_src
 
 * General Packages
+** Dashboard
+
+Its a nice dashboard.
+#+begin_src emacs-lisp
+  (use-package dashboard
+    :config
+    (setq dashboard-startup-banner nil)
+    (setq dashboard-items
+          '((recents . 5)
+            (projects .5)))
+    (dashboard-setup-startup-hook))
+#+end_src
+
 ** Which-Key
    
 Its a nice package.
@@ -189,6 +202,55 @@ Use rainbow-delimters to make your delimiters colorfull.
       (use-package rainbow-delimiters
 	:hook (prog-mode . rainbow-delimiters-mode))
 #+end_src
+*** Language-Server
+
+#+begin_src emacs-lisp
+  (use-package lsp-mode
+    :commands (lsp lsp-deferred)
+    :init
+    (setq lsp-keymap-prefix "C-c l")
+    :config
+    (lsp-enable-which-key-integration t))
+#+end_src
+*** Company-Mode
+
+#+begin_src emacs-lisp
+  (use-package company
+    :config
+    (setq company-idle-delay 0.3
+          company-minimum-prefix-length 2))
+
+  (use-package company-box
+    :hook (company-mode . company-box-mode))
+#+end_src
+
+*** Paredit
+
+#+begin_src emacs-lisp
+  (use-package paredit)
+#+end_src
+*** Flycheck
+
+#+begin_src emacs-lisp
+  (use-package flycheck
+    :defer t)
+#+end_src
+
+** Languages
+*** Emacs Lisp
+
+#+begin_src emacs-lisp
+  (defun my/emacs-mode-hook ()
+    (paredit-mode t)
+    (flycheck-mode)
+    (eldoc-mode t))
+
+  (use-package emacs-lisp-mode
+    :ensure nil
+    :hook (emacs-lisp-mode . my/emacs-mode-hook))
+#+end_src
+
+*** Python
 * Text-Setup
 ** Org-Mode
 

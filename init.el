@@ -60,6 +60,14 @@
 (use-package doom-modeline
   :init (doom-modeline-mode 1))
 
+(use-package dashboard
+  :config
+  (setq dashboard-startup-banner nil)
+  (setq dashboard-items
+        '((recents . 5)
+          (projects .5)))
+  (dashboard-setup-startup-hook))
+
 (use-package which-key
   :init (which-key-mode)
   :diminish which-key-mode
@@ -108,9 +116,51 @@
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
 
+(use-package lsp-mode
+  :commands (lsp lsp-deferred)
+  :init
+  (setq lsp-keymap-prefix "C-c l")
+  :config
+  (lsp-enable-which-key-integration t))
+
+(use-package company
+  :config
+  (setq company-idle-delay 0.3
+        company-minimum-prefix-length 2))
+
+(use-package company-box
+  :hook (company-mode . company-box-mode))
+
+(use-package paredit)
+
+(use-package flycheck
+  :defer t)
+
+(defun my/emacs-mode-hook ()
+  (paredit-mode t)
+  (flycheck-mode)
+  (eldoc-mode t))
+
+(use-package emacs-lisp-mode
+  :ensure nil
+  :hook (emacs-lisp-mode . my/emacs-mode-hook))
+
 (defun my/org-mode-hook ()
   (org-indent-mode)
   (visual-line-mode 1))
 
 (use-package org
   :hook (org-mode . my/org-mode-hook))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(dashboard flycheck company-box paredit company lsp-mode zenburn-theme which-key use-package rainbow-delimiters projectile magit ivy-rich helpful doom-themes doom-modeline counsel all-the-icons-dired)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

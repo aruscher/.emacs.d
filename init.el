@@ -124,6 +124,7 @@
   (lsp-enable-which-key-integration t))
 
 (use-package company
+  :hook (prog-mode . company-mode)
   :config
   (setq company-idle-delay 0.3
         company-minimum-prefix-length 2))
@@ -145,22 +146,14 @@
   :ensure nil
   :hook (emacs-lisp-mode . my/emacs-mode-hook))
 
+(use-package python
+  :ensure nil
+  :custom
+  (python-shell-interpreter "python3"))
+
 (defun my/org-mode-hook ()
   (org-indent-mode)
   (visual-line-mode 1))
 
 (use-package org
   :hook (org-mode . my/org-mode-hook))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(dashboard flycheck company-box paredit company lsp-mode zenburn-theme which-key use-package rainbow-delimiters projectile magit ivy-rich helpful doom-themes doom-modeline counsel all-the-icons-dired)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )

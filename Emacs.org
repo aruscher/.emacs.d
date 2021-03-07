@@ -216,6 +216,7 @@ Use rainbow-delimters to make your delimiters colorfull.
 
 #+begin_src emacs-lisp
   (use-package company
+    :hook (prog-mode . company-mode)
     :config
     (setq company-idle-delay 0.3
           company-minimum-prefix-length 2))
@@ -251,6 +252,13 @@ Use rainbow-delimters to make your delimiters colorfull.
 #+end_src
 
 *** Python
+
+#+begin_src emacs-lisp
+  (use-package python
+    :ensure nil
+    :custom
+    (python-shell-interpreter "python3"))
+#+end_src
 * Text-Setup
 ** Org-Mode
 
